@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: adventureworks_raw_data
+    description: Essa é a fonte de dados do nosso ERP, criada através do Stitch
+    tables:
+      - name: countryregion
+        description: Essa é a tabela de estado do ERP.
+
+      - name: creditcard
+        description: Essa é a tabela de tipo de cartao do ERP.
+        
+      - name: customer
+        description: Essa é a tabela de clientes do ERP. 
+
+      - name: employee
+        description: Essa é a tabela de funcionarios do ERP. 
+
+      - name: person
+        description: Essa é a tabela de pessoa do ERP. 
+
+      - name: product
+        description: Essa é a tabela de produtos do ERP. 
+
+      - name: salesorderdetail
+        description: Essa é a tabela de detalhes do pedido do ERP. 
+
+      - name: salesorderheader
+        description: Essa é a tabela de pedido do ERP. 
+
+      - name: salesorderheadersalesreason
+        description: Essa é a tabela de motivo do pedido do ERP. 
+        
+      - name: salesperson
+        description: Essa é a tabela de vendedor do ERP. 
+
+      - name: salesreason
+        description: Essa é a tabela de motivo da venda do ERP. 
+
+      - name: stateprovince
+        description: Essa é a tabela de Estado do ERP. 

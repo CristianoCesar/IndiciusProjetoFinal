@@ -1,0 +1,103 @@
+
+version: 2
+
+models:
+    - name: dim_cidade
+      description: "Esta é a tabela de dimensão cidade da Adventure Works"
+      columns:
+          - name: sk_cidade
+            description: "A chave surrogate da dimensão cidade"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_cliente
+      description: "Esta é a tabela de dimensão cliente da Adventure Works"
+      columns:
+          - name: sk_cliente
+            description: "A chave surrogate da dimensão cliente"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_data
+      description: "Esta é a tabela de dimensão data da Adventure Works"
+      columns:
+          - name: sk_data
+            description: "A chave surrogate da dimensão data"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_estado
+      description: "Esta é a tabela de dimensão estado da Adventure Works"
+      columns:
+          - name: sk_estado
+            description: "A chave surrogate da dimensão estado"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_motivo_da_venda
+      description: "Esta é a tabela de dimensão motivo da venda da Adventure Works"
+      columns:
+          - name: sk_motivo_da_venda
+            description: "A chave surrogate da dimensão motivo da venda"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_pais
+      description: "Esta é a tabela de dimensão pais da Adventure Works"
+      columns:
+          - name: sk_pais
+            description: "A chave surrogate da dimensão pais"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_produto
+      description: "Esta é a tabela de dimensão produto da Adventure Works"
+      columns:
+          - name: sk_produto
+            description: "A chave surrogate da dimensão produto"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_status
+      description: "Esta é a tabela de dimensão status da Adventure Works"
+      columns:
+          - name: sk_status
+            description: "A chave surrogate da dimensão status"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_paistipo_de_cartao
+      description: "Esta é a tabela de dimensão tipo de cartao da Adventure Works"
+      columns:
+          - name: sk_tipo_de_cartao
+            description: "A chave surrogate da dimensão tipo de cartao"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_vendedor
+      description: "Esta é a tabela de dimensão vendedor da Adventure Works"
+      columns:
+          - name: sk_vendedor
+            description: "A chave surrogate da vendedor pais"
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_fact_vendas
+      description: "Esta é a tabela de dimensão vendas da Adventure Works"
+      columns:
+          - name: sk_vendas
+            description: "A chave surrogate da dimensão vendas"
+            tests:
+                - unique
+                - not_null
+   
