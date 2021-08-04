@@ -7,6 +7,9 @@ sources:
       - name: countryregion
         description: Essa é a tabela de estado do ERP.
 
+      - name: address
+        description: Essa é a tabela de cidade do ERP.
+
       - name: creditcard
         description: Essa é a tabela de tipo de cartao do ERP.
         
