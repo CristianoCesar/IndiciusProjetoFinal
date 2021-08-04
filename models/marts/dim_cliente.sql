@@ -12,7 +12,7 @@ pessoa as (
 juntar_chaves as (
         select *
         from cliente
-        inner join pessoa on cliente.personid = pessoa.businessentityid
+        inner join pessoa on cliente.personid = pessoa.businessentityid_p
 )
 
 select * from juntar_chaves
