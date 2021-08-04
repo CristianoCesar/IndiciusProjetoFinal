@@ -12,6 +12,6 @@ pedido_detalhes as (
 juntar_chaves as (
         select *
         from pedido
-        inner join pedido_detalhes on pedido.salesorderid = pedido_detalhes.salesorderid
+        inner join pedido_detalhes on pedido.salesorderid = pedido_detalhes.salesorderid_pd
 )
 select * from juntar_chaves
