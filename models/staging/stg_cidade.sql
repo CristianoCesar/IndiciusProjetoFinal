@@ -1,7 +1,7 @@
 with dados_fonte as (
     select
     row_number() over (order by addressid) as sk_cidade
-    ,stateprovinceid
+    ,stateprovinceid as stateprovinceid_c
     ,city
     ,addressline2
     ,modifieddate
