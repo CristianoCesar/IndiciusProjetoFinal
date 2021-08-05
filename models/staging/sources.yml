@@ -33,12 +33,15 @@ sources:
 
       - name: salesorderheadersalesreason
         description: Essa é a tabela de motivo do pedido do ERP. 
-        
-      - name: salesperson
-        description: Essa é a tabela de vendedor do ERP. 
 
       - name: salesreason
-        description: Essa é a tabela de motivo da venda do ERP. 
+        description: Essa é a tabela de motivo da venda do ERP.    
+        
+      - name: salesperson
+        description: Essa é a tabela de vendedor do ERP.       
 
       - name: stateprovince
         description: Essa é a tabela de Estado do ERP. 
+
+      - name: businessentityaddress
+        description: Essa é a tabela que relaciona endereço a pessoa do ERP. 
