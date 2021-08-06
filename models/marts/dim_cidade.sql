@@ -5,14 +5,18 @@ with cidade as (
 
 ),
 endereco_pessoa as (
-        select *
+        select
+        sk_endereco_pessoa
+        ,businessentityid_ep
+        ,addressid_ep
+          
         from {{ ref('stg_endereco_pessoa') }}
 
 ),
 juntar_chaves as (
         select *
-        from cidade
-        inner join endereco_pessoa on cidade.addressid =endereco_pessoa.addressid_ep
+        from endereco_pessoa
+        inner join cidade on endereco_pessoa.addressid_ep = cidade.addressid
 )
 
 select * from juntar_chaves

@@ -1,12 +1,17 @@
 with endereco_pessoa as (
 
-    select *
+    select 
+        sk_endereco_pessoa
+        ,businessentityid_ep
+        ,addressid_ep
     from {{ ref('stg_endereco_pessoa') }}
 
 ),
 cidade as (
 
-    select *
+    select 
+        addressid
+        ,stateprovinceid_c
     from {{ ref('stg_cidade')}}
 
 ),

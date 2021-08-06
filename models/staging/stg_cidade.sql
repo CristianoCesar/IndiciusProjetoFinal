@@ -4,15 +4,8 @@ with dados_fonte as (
     ,stateprovinceid as stateprovinceid_c
     ,city
     ,addressline2
-    ,modifieddate
-    ,rowguid
-    ,_sdc_table_version
     ,postalcode
     ,spatiallocation
-    ,_sdc_received_at
-    ,_sdc_sequence
-    ,addressline1
-    ,_sdc_batched_at
     ,addressid 
     from {{ source('adventureworks_raw_data', 'address' )}}
 )
