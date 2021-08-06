@@ -6,18 +6,13 @@ with dados_fonte as (
     ,salesorderid
     ,billtoaddressid
     ,salespersonid
-    ,modifieddate
-    ,rowguid
     ,taxamt
     ,shiptoaddressid
     ,onlineorderflag
-    ,_sdc_table_version
     ,territoryid
     ,status
     ,currencyrateid
     ,orderdate
-    ,_sdc_received_at
-    ,_sdc_sequence
     ,creditcardapprovalcode
     ,subtotal
     ,creditcardid
@@ -27,7 +22,6 @@ with dados_fonte as (
     ,totaldue
     ,customerid
     ,shipdate
-    ,_sdc_batched_at
     ,accountnumber
     from {{ source('adventureworks_raw_data', 'salesorderheader' )}}
 )

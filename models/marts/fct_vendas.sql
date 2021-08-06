@@ -2,7 +2,7 @@ with
     cidade as (
         select
         sk_cidade
-        ,stateprovinceid
+        ,stateprovinceid_c
         ,businessentityid_ep 
         from {{ref('dim_cidade')}}
     )
@@ -66,12 +66,9 @@ with
         ,pedido.salesorderid	
         ,pedido.billtoaddressid
         ,pedido.salespersonid
-        ,pedido.modifieddate	
-        ,pedido.rowguid
         ,pedido.taxamt
         ,pedido.shiptoaddressid
-        ,pedido.onlineorderflag	
-        ,pedido._sdc_table_version
+        ,pedido.onlineorderflag	   
         ,pedido.territoryid
         ,pedido.status
         ,pedido.currencyrateid
@@ -89,7 +86,7 @@ with
 
         from {{ ref('stg_pedido')}} pedido
         left join cidade cidade on pedido.businessentityid = cidade.businessentityid_ep
-        left join cliente cliente on pedido.businessentityid = cliente.personid
+        left join cliente cliente on pedido.customerid = cliente.customerid
         left join estado estado on pedido.businessentityid = estado.businessentityid_ep
         left join motivo_da_venda motivo_da_venda on pedido.salesorderid = motivo_da_venda.salesorderid
         left join pais pais on pedido.businessentityid = pais.businessentityid_ep
@@ -122,12 +119,9 @@ with
         ,pedido.salesorderid	
         ,pedido.billtoaddressid
         ,pedido.salespersonid
-        ,pedido.modifieddate	
-        ,pedido.rowguid
         ,pedido.taxamt
         ,pedido.shiptoaddressid
-        ,pedido.onlineorderflag	
-        ,pedido._sdc_table_version
+        ,pedido.onlineorderflag	  
         ,pedido.territoryid
         ,pedido.status
         ,pedido.currencyrateid
