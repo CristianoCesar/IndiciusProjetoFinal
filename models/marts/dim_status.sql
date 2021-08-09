@@ -1,9 +1,7 @@
 with staging as (
 
-    select 
-    sk_pedido
-    ,salesorderid
-    ,status
+    select *
+
     from {{ ref('stg_pedido')}}
 )
 select * from staging

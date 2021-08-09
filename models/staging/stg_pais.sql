@@ -3,11 +3,7 @@ with dados_fonte as (
     row_number() over (order by countryregioncode) as sk_pais
     ,countryregioncode
     ,modifieddate
-    ,name as name_p
-    ,_sdc_sequence
-    ,_sdc_table_version
-    ,_sdc_received_at
-    ,_sdc_batched_at
+    ,name
     from {{ source('adventureworks_raw_data', 'countryregion' )}}
 )
 select * 
