@@ -1,22 +1,19 @@
-with cidade as (
+with estado as (
 
     select *
-    from {{ ref('stg_cidade')}}
-
+ 
+    from {{ ref('stg_estado')}}
 ),
-endereco_pessoa as (
-        select
-        sk_endereco_pessoa
-        ,businessentityid_ep
-        ,addressid_ep
-          
-        from {{ ref('stg_endereco_pessoa') }}
+cidade as (
+        select *
+            
+        from {{ ref('stg_cidade') }}
 
 ),
 juntar_chaves as (
         select *
-        from endereco_pessoa
-        inner join cidade on endereco_pessoa.addressid_ep = cidade.addressid
+        from cidade
+        left join estado on cidade.stateprovinceid_c = estado.stateprovinceid
 )
 
 select * from juntar_chaves
