@@ -12,7 +12,7 @@ motivo_do_pedido as (
 juntar_chaves as (
         select *
         from motivo_da_venda
-        inner join motivo_do_pedido on motivo_da_venda.salesreasonid = motivo_do_pedido.salesreasonid_mp
+        left join motivo_do_pedido on motivo_da_venda.salesreasonid = motivo_do_pedido.salesreasonid_mp
 )
 
 select * from juntar_chaves
