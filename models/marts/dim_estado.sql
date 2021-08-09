@@ -1,13 +1,7 @@
 with staging as (
 
-    select 
-    sk_estado
-    ,stateprovinceid
-    ,countryregioncode_e
-    ,name	
-    ,territoryid	
-    ,isonlystateprovinceflag	
-    ,stateprovincecode
+    select *
+
     from {{ ref('stg_estado')}}
 )
 select * from staging

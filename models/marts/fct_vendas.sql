@@ -85,54 +85,5 @@ with
         left join pais pais on pedido.territoryid = pais.territoryid
         left join tipo_de_cartao tipo_de_cartao on pedido.creditcardid = tipo_de_cartao.creditcardid   
     )
-    ,pedido_detalhes_com_sk as (
-        select 
-        pedido_detalhes.salesorderdetailid
-        ,produto.sk_produto as fk_produto
-        ,pedido_detalhes.orderqty
-	    ,pedido_detalhes.salesorderid_pd
-        ,pedido_detalhes.productid_pd
-        ,pedido_detalhes.unitprice
-        from {{ ref('stg_pedido_detalhes') }} pedido_detalhes
-        left join produto produto on pedido_detalhes.productid_pd = produto.productid
 
-    ),
-    final as (
-        select 
-        pedido_detalhes.salesorderid_pd
-        ,pedido.fk_cidade
-        ,pedido.fk_cliente
-        ,pedido.fk_estado
-        ,pedido.fk_motivo_da_venda
-        ,pedido.fk_pais
-        ,pedido.fk_tipo_de_cartao
-        ,pedido.purchaseordernumber	
-        ,pedido.shipmethodid	
-        ,pedido.salesorderid	
-        ,pedido.billtoaddressid
-        ,pedido.salespersonid
-        ,pedido.taxamt
-        ,pedido.shiptoaddressid
-        ,pedido.onlineorderflag	  
-        ,pedido.territoryid
-        ,pedido.status
-        ,pedido.currencyrateid
-        ,pedido.orderdate       
-        ,pedido.creditcardapprovalcode
-        ,pedido.subtotal
-        ,pedido.creditcardid
-        ,pedido.revisionnumber
-        ,pedido.freight
-        ,pedido.duedate	
-        ,pedido.totaldue	
-        ,pedido.customerid	
-        ,pedido.shipdate        
-        ,pedido.accountnumber
-        ,pedido_detalhes.orderqty
-	    ,pedido_detalhes.salesorderdetailid	
-        ,pedido_detalhes.unitprice
-
-        from pedido_com_sk pedido
-        left join pedido_detalhes_com_sk pedido_detalhes on pedido.salesorderid = pedido_detalhes.salesorderid_pd
-    )
-select * from final
+    select * from pedido_com_sk
