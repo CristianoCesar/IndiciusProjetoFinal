@@ -3,7 +3,7 @@ with
         select
         sk_cidade
         ,stateprovinceid_c
-        ,businessentityid_ep 
+        ,territoryid
         from {{ref('dim_cidade')}}
     )
     , cliente as (
@@ -17,20 +17,21 @@ with
         select
         sk_estado
         ,stateprovinceid
-        ,businessentityid_ep
+        ,territoryid
         from {{ref('dim_estado')}}
     )
     , motivo_da_venda as (
         select
         sk_motivo_da_venda
         ,salesreasonid
+        ,salesorderid
         from {{ref('dim_motivo_da_venda')}}
     )
     , pais as (
         select
         sk_pais
         ,countryregioncode
-        ,businessentityid_ep
+        ,territoryid
         from {{ref('dim_pais')}}
     )
     ,produto as (
@@ -45,12 +46,6 @@ with
         ,creditcardid
         from {{ref('dim_tipo_de_cartao')}}
     )
-    ,vendedor as (
-        select
-        sk_vendedor
-        ,businessentityid
-        from {{ref('dim_vendedor')}}
-    )
     ,pedido_com_sk as (
         select 
         pedido.salesorderid
@@ -60,10 +55,8 @@ with
         ,motivo_da_venda.sk_motivo_da_venda as fk_motivo_da_venda
         ,pais.sk_pais as fk_pais
         ,tipo_de_cartao.sk_tipo_de_cartao as fk_tipo_de_cartao
-        ,vendedor.sk_vendedor as fk_vendedor
         ,pedido.purchaseordernumber	
-        ,pedido.shipmethodid	
-        ,pedido.salesorderid	
+        ,pedido.shipmethodid    
         ,pedido.billtoaddressid
         ,pedido.salespersonid
         ,pedido.taxamt
@@ -85,35 +78,34 @@ with
         ,pedido.accountnumber
 
         from {{ ref('stg_pedido')}} pedido
-        left join cidade cidade on pedido.businessentityid = cidade.businessentityid_ep
+        left join cidade cidade on pedido.territoryid = cidade.territoryid
         left join cliente cliente on pedido.customerid = cliente.customerid
-        left join estado estado on pedido.businessentityid = estado.businessentityid_ep
+        left join estado estado on pedido.territoryid = estado.territoryid
         left join motivo_da_venda motivo_da_venda on pedido.salesorderid = motivo_da_venda.salesorderid
-        left join pais pais on pedido.businessentityid = pais.businessentityid_ep
-        left join tipo_de_cartao tipo_de_cartao on pedido.creditcardid = tipo_de_cartao.creditcardid
-        left join vendedor vendedor on pedido.businessentityid = vendedor.businessentityid
+        left join pais pais on pedido.territoryid = pais.territoryid
+        left join tipo_de_cartao tipo_de_cartao on pedido.creditcardid = tipo_de_cartao.creditcardid   
     )
     ,pedido_detalhes_com_sk as (
         select 
         pedido_detalhes.salesorderdetailid
         ,produto.sk_produto as fk_produto
         ,pedido_detalhes.orderqty
-	    ,pedido_detalhes.salesorderdetailid	
+	    ,pedido_detalhes.salesorderid_pd
+        ,pedido_detalhes.productid_pd
         ,pedido_detalhes.unitprice
         from {{ ref('stg_pedido_detalhes') }} pedido_detalhes
-        left join produto produto on pedido_detalhes.productid = produto.productid
+        left join produto produto on pedido_detalhes.productid_pd = produto.productid
 
     ),
     final as (
         select 
-        pedido_detalhes.salesorderid
+        pedido_detalhes.salesorderid_pd
         ,pedido.fk_cidade
         ,pedido.fk_cliente
         ,pedido.fk_estado
         ,pedido.fk_motivo_da_venda
         ,pedido.fk_pais
         ,pedido.fk_tipo_de_cartao
-        ,pedido.fk_vendedor
         ,pedido.purchaseordernumber	
         ,pedido.shipmethodid	
         ,pedido.salesorderid	
@@ -141,6 +133,6 @@ with
         ,pedido_detalhes.unitprice
 
         from pedido_com_sk pedido
-        inner join pedido_detalhes_com_sk pedido_detalhes on pedido.salesorderid = pedido_detalhes.salesorderid_pd
+        left join pedido_detalhes_com_sk pedido_detalhes on pedido.salesorderid = pedido_detalhes.salesorderid_pd
     )
 select * from final
