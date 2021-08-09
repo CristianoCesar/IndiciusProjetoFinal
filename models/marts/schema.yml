@@ -74,7 +74,7 @@ models:
                 - unique
                 - not_null
 
-    - name: dim_paistipo_de_cartao
+    - name: dim_tipo_de_cartao
       description: "Esta é a tabela de dimensão tipo de cartao da Adventure Works"
       columns:
           - name: sk_tipo_de_cartao
@@ -92,7 +92,7 @@ models:
                 - unique
                 - not_null
 
-    - name: dim_fact_vendas
+    - name: fct_vendas
       description: "Esta é a tabela de dimensão vendas da Adventure Works"
       columns:
           - name: sk_vendas

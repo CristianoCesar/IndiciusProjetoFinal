@@ -13,7 +13,7 @@ pais as (
 juntar_chaves as (
         select *
         from pais
-        inner join estado on pais.countryregioncode = estado.countryregioncode_e
+        left join estado on pais.countryregioncode = estado.countryregioncode_e
 )
 
 select * from juntar_chaves
